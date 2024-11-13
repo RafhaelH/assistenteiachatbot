@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-container bg-white p-5 rounded-4 shadow-sm" style="width: 100%; max-width: 400px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="text-center mb-4">
+            <i class="bi bi-person-circle animated-icon"></i>
+            <h2 class="fw-bold animated-title mt-2">Acessar sua Conta</h2>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="username" class="form-label fw-semibold" style="color: #666;">Nome de Usuário</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light rounded-start">
+                        <i class="bi bi-person-fill text-secondary"></i>
+                    </span>
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Digite seu usuário" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label fw-semibold" style="color: #666;">Senha</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light rounded-start">
+                        <i class="bi bi-lock-fill text-secondary"></i>
+                    </span>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Digite sua senha" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 fw-semibold rounded-pill">Entrar</button>
+            <div class="text-center mt-3">
+                <small>Não possui uma conta? <a href="{% url 'register' %}" class="text-decoration-none text-primary">Criar</a></small>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Animação de pulso para o ícone */
+    .animated-icon {
+        font-size: 2.5rem;
+        color: #007bff;
+        animation: pulse 1.5s infinite;
+    }
+
+    /* Animação para o título */
+    .animated-title {
+        color: #333;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+    }
+
+    /* Efeito de pulso */
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    /* Efeito de aparecimento suave */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
